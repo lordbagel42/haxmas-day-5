@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="./output.css" />
+		<script src="./main.js" defer></script>
+	</head>
+
+	<body class="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
+		<main class="max-w-6xl mx-auto p-6">
+			<header class="text-center mb-12">
+				<h1 class="text-4xl font-semibold tracking-tight mb-2">
+					🎁 Raygen's Gift Tracker
+				</h1>
+				<p class="text-neutral-400">
+					Tracking gifts since
+					<span class="text-neutral-200 font-medium">2025</span>
+				</p>
+
+				<img
+					src="https://haxmas.hackclub.com/haxmas-logo.png"
+					alt="Haxmas logo"
+					class="mx-auto mt-8 w-144 rounded-xl border border-neutral-800 bg-neutral-900"
+				/>
+			</header>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<!-- no this wasn't a comment added by AI, I collapsed the section and wanted to remember what it is. -->
+				<!-- Form -->
+				<section
+					class="md:col-span-1 rounded-2xl border border-neutral-800 bg-neutral-900/60 backdrop-blur p-6 h-fit md:sticky md:top-6"
+				>
+					<h2 class="text-lg font-medium mb-5">Add a Gift</h2>
+
+					<form id="giftForm" class="space-y-4">
+						<div>
+							<label for="name" class="block text-sm text-neutral-400 mb-1">
+								First name
+							</label>
+							<input
+								id="name"
+								name="name"
+								type="text"
+								required
+								placeholder="Heidi"
+								class="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3 py-2 text-sm placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-700"
+							/>
+						</div>
+
+						<div>
+							<label for="gift" class="block text-sm text-neutral-400 mb-1">
+								Gift
+							</label>
+							<input
+								id="gift"
+								name="gift"
+								type="text"
+								required
+								placeholder="snowflakes :3"
+								class="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3 py-2 text-sm placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-700"
+							/>
+						</div>
+
+						<button
+							type="submit"
+							class="w-full rounded-lg bg-neutral-100 text-neutral-900 px-4 py-2.5 text-sm font-medium hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400"
+						>
+							Add Gift
+						</button>
+					</form>
+				</section>
+
+				<!-- List -->
+				<section class="md:col-span-2">
+					<h2 class="text-lg font-medium mb-4">Gift List</h2>
+
+					<div id="gifts" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+					<p id="emptyState" class="hidden mt-10 text-center text-neutral-500">
+						No gifts yet — be the first 🎄
+					</p>
+				</section>
+			</div>
+		</main>
+	</body>
+</html>
