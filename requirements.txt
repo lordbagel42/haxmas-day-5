@@ -1,0 +1,3 @@
+better-profanity==0.7.0
+Flask
+Flask-Limiter==4.1.1
