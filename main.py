@@ -3,12 +3,18 @@ import sqlite3
 from flask_limiter import Limiter
 from better_profanity import profanity
 from flask_limiter.util import get_remote_address
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = flask.Flask(
     __name__,
     static_folder="static",
     static_url_path="/"
 )
+
+SQLITEDB = os.getenv("DB")
 
 limiter = Limiter(
     get_remote_address,
@@ -18,7 +24,7 @@ limiter = Limiter(
 )
 
 
-conn = sqlite3.connect('sqlite.db')
+conn = sqlite3.connect(SQLITEDB)
 cursor = conn.cursor()
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS gifts (
@@ -51,7 +57,7 @@ def create_gift():
     if profanity.contains_profanity(name) or profanity.contains_profanity(gift):
         return flask.jsonify({'error': 'this seems offensive, quit it'}), 400
 
-    conn = sqlite3.connect('sqlite.db')
+    conn = sqlite3.connect(SQLITEDB)
     cursor = conn.cursor()
     cursor.execute(
         'INSERT INTO gifts (name, gift) VALUES (?, ?)', (name, gift))
@@ -64,7 +70,7 @@ def create_gift():
 @app.get("/gifts")
 @limiter.limit("1 per second")
 def get_gifts():
-    conn = sqlite3.connect('sqlite.db')
+    conn = sqlite3.connect(SQLITEDB)
     cursor = conn.cursor()
     cursor.execute('SELECT id, name, gift FROM gifts')
     rows = cursor.fetchall()
